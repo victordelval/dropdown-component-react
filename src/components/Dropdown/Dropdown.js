@@ -14,12 +14,28 @@ class Dropdown extends React.Component {
         loading: PropTypes.bool.isRequired
     }
 
+    renderSelector() {
+        if (this.props.loading) {
+            return <select className="dropdown">
+                <option>Loading...</option>
+            </select>
+        } else if (this.props.data.length === 0) {
+            return <select className="dropdown" disabled>
+                <option>No data available</option>
+            </select>
+        } else {
+            return <select className="dropdown">
+                { this.props.data.map(country =>
+                    <option value={ country.code } key={ country.code } >{ country.name }</option>
+                ) }
+            </select>
+        }
+    }
+
     render() {
-        return <select className="dropdown">
-            <option>Select a country</option>
-            <option value="PT">Portugal</option>
-            <option value="SP">Spain</option>
-        </select>
+        return <div>
+            { this.renderSelector() }
+        </div>
     }
 
 }
