@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './CountriesContainer.css'
 import Dropdown from '../../components/Dropdown';
 
 
@@ -37,13 +38,16 @@ class CountriesContainer extends React.Component {
     }
 
     render() {
+        const dropdownClassName = 'countries-dropdown';
+
         return (
-            <main className="container">
-                <h1>This is a dropdown component</h1>
-                <p>Please select a country:</p>
-                <Dropdown
-                    data={ this.state.countries }
-                    loading={ this.state.loading } />
+            <main className="countries-container">
+                <h1 className="countries-container-text">This is a dropdown component</h1>
+                <p className="countries-container-text">Please select a country:</p>
+                    <Dropdown
+                        data={ this.state.countries }
+                        loading={ this.state.loading }
+                        dropdownCss={ dropdownClassName } />
             </main>
         )
     }
