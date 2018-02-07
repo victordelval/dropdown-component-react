@@ -17,6 +17,25 @@ class CountriesContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({ loading: true });
+
+        fetch('http://127.0.0.1:9000/countries').then(res => {
+            return res.json();
+        }).then(json => {
+            this.setState({
+                loading: false,
+                countries: json.countries
+            })
+        }).catch(err => {
+            console.log(err)
+            this.setState({
+                loading: false,
+                countries: []
+            })
+        });
+    }
+
     render() {
         return (
             <main className="container">
