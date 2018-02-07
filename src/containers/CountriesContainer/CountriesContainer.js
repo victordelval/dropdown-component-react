@@ -40,7 +40,10 @@ class CountriesContainer extends React.Component {
         return (
             <main className="container">
                 <h1>This is a dropdown component</h1>
-                <Dropdown />
+                <p>Please select a country:</p>
+                <Dropdown
+                    data={ this.state.countries }
+                    loading={ this.state.loading } />
             </main>
         )
     }
