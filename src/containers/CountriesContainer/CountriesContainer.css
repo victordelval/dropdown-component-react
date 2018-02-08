@@ -4,10 +4,14 @@
 }
 
 .countries-container {
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .countries-container-text {
     text-align: center;
     color: #3d3d3d;
+}
+
+.countries-container-p {
+    padding-top: 30px;
 }

@@ -5,7 +5,7 @@ import './Dropdown.css'
 
 
 /**
- * Multiple search selection dropdown component
+ * Basic dropdown component
  */
 class Dropdown extends React.Component {
 

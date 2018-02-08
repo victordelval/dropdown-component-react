@@ -2,6 +2,7 @@ import React from 'react';
 
 import './CountriesContainer.css'
 import Dropdown from '../../components/Dropdown';
+import MultiSearchDropdown from '../../components/MultiSearchDropdown';
 
 
 /**
@@ -42,12 +43,18 @@ class CountriesContainer extends React.Component {
 
         return (
             <main className="countries-container">
-                <h1 className="countries-container-text">This is a dropdown component</h1>
-                <p className="countries-container-text">Please select a country:</p>
-                    <Dropdown
-                        data={ this.state.countries }
-                        loading={ this.state.loading }
-                        dropdownCss={ dropdownClassName } />
+                <h1 className="countries-container-text">Dropdown components</h1>
+                <p className="countries-container-text countries-container-p">Basic Dropdown component:</p>
+                <Dropdown
+                    data={ this.state.countries }
+                    loading={ this.state.loading }
+                    dropdownCss={ dropdownClassName } />
+
+                <p className="countries-container-text countries-container-p">Multiple Search Selection Dropdown component (extends):</p>
+                <MultiSearchDropdown
+                    data={ this.state.countries }
+                    loading={ this.state.loading }
+                    dropdownCss={ dropdownClassName } />
             </main>
         )
     }
