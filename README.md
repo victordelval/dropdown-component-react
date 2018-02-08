@@ -75,6 +75,9 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.
 
+Jest has an integrated coverage reporter that works well with ES6 and requires no configuration.<br>
+Run `npm test -- --coverage` to include a coverage report.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
