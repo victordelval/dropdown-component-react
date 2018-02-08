@@ -5,6 +5,7 @@ import './index.css';
 
 import CountriesContainer from './containers/CountriesContainer';
 
+require('dotenv').config()
 
 ReactDOM.render(
     <div>
