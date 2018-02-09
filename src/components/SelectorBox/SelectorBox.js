@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SelectorSearch from '../SelectorSearch';
-import SelectorLabel from '../SelectorLabel';
+import SelectorLabelList from '../SelectorLabelList';
 
 
 class SelectorBox extends React.Component {
@@ -9,7 +9,7 @@ class SelectorBox extends React.Component {
     render() {
         return <span className={ this.props.dropdownCss }>
             <SelectorSearch />
-            <SelectorLabel />
+            <SelectorLabelList />
         </span>;
     }
 }

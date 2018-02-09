@@ -39,6 +39,15 @@ class MultiSearchDropdown extends Dropdown {
 
     renderSelector() {
         let selectClassName = `multi-search-dropdown ${ this.props.dropdownCss }`;
+
+        return <div>
+            <SelectorBox dropdownCss={ selectClassName } />
+            <SelectorList
+                data={ this.props.data }
+                loading={ this.props.loading }
+                dropdownCss={ selectClassName } />
+        </div>;
+
         // return <div
         //     className={ selectClassName }
         //     placeholder="spain, portugal..."
@@ -48,11 +57,6 @@ class MultiSearchDropdown extends Dropdown {
         //             <small><span className="button">{ country.name }</span></small>
         //         )}
         // </div>;
-
-        return <div>
-            <SelectorBox dropdownCss={ selectClassName } />
-            <SelectorList dropdownCss={ selectClassName } />
-        </div>;
     }
 
     render() {
