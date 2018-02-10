@@ -2,11 +2,11 @@ import React from 'react';
 
 import './CountriesContainer.css'
 import Dropdown from '../../components/Dropdown';
-import MultiSearchDropdown from '../../components/MultiSearchDropdown';
+import MultiSearchDropdown from '../MultiSearchDropdown';
 
 
 /**
- * Container component to select multiple countries.
+ * Container component to manage a couple of dropdown selectors.
  */
 class CountriesContainer extends React.Component {
 
@@ -41,24 +41,26 @@ class CountriesContainer extends React.Component {
     render() {
         const dropdownClassName = 'countries-dropdown';
 
-        return (
-            <main className="countries-container">
-                <h1 className="countries-container-text">Dropdown components</h1>
-                <p className="countries-container-text countries-container-p">Basic Dropdown component:</p>
-                <Dropdown
-                    data={ this.state.countries }
-                    loading={ this.state.loading }
-                    dropdownCss={ dropdownClassName } />
+        console.log("CountriesContainer >>> this.props.data")
+        console.log(this.props.data)
 
-                <p className="countries-container-text countries-container-p">Multiple Search Selection Dropdown component (extends):</p>
-                <MultiSearchDropdown
-                    data={ this.state.countries }
-                    loading={ this.state.loading }
-                    dropdownCss={ dropdownClassName } />
-            </main>
-        )
+        return <main className="countries-container">
+            <h1 className="countries-container-text">Dropdown component</h1>
+            <hr/>
+            <p className="countries-container-text countries-container-p">This is a Multiple Search Selection Dropdown component (extends):</p>
+            <MultiSearchDropdown
+                data={ this.props.countries }
+                loading={ this.props.loading }
+                dropdownCss={ dropdownClassName } />
+
+            {/* <p className="countries-container-text">Basic Dropdown component:</p>
+            <Dropdown
+                data={ this.state.countries }
+                loading={ this.state.loading }
+                dropdownCss={ dropdownClassName } />
+            <br/> */}
+        </main>;
     }
-
 }
 
 export default CountriesContainer;

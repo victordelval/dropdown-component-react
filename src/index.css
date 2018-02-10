@@ -10,3 +10,24 @@ h1, p {
   text-align: center;
   color: #3d3d3d;
 }
+
+
+/* Countries container */
+
+.countries-dropdown {
+  display: block;
+  margin: 0 auto;
+}
+
+.countries-container {
+  margin-top: 10%;
+}
+
+.countries-container-text {
+  text-align: center;
+  color: #3d3d3d;
+}
+
+.countries-container-p {
+  padding-top: 30px;
+}
