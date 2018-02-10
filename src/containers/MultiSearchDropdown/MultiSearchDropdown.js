@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { expandDropdown, collapseDropdown, startSearch, successSearch } from '../../actions/actions';
+import { expandDropdown, collapseDropdown, startRequest, successRequest } from '../../actions/actions';
 
 import './MultiSearchDropdown.css';
 
@@ -33,6 +33,21 @@ class MultiSearchDropdown extends React.Component {
 
         // Binds
         this.onClick = this.onClick.bind(this);
+    }
+
+    componentDidMount() {
+        // this.setState({ loading: true });
+        this.props.dispatch(startRequest());
+
+        fetch(process.env.REACT_APP_COUNTRIES_URL)
+            .then(res => {
+                return res.json();
+            }).then(json => {
+                this.props.dispatch(successRequest(json.countries));
+            }).catch(err => {
+                // TODO - Handle error
+                console.log(err);
+            });
     }
 
     onClick(e) {

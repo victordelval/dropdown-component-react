@@ -10,3 +10,16 @@ export const collapseDropdown = () => {
         type: 'COLLAPSE_DROPDOWN'
     }
 }
+
+export const startRequest = () => {
+    return {
+        type: 'REQUEST_START'
+    }
+}
+
+export const successRequest = data => {
+    return {
+        type: 'REQUEST_SUCCESS',
+        data
+    }
+}

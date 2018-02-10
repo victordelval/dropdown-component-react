@@ -20,6 +20,17 @@ const reducer = (state = initialState, action) => {
                 expanded: false,
             })
         }
+        case 'REQUEST_START': {
+            return Object.assign({}, state, {
+                loading: true
+            })
+        }
+        case 'REQUEST_SUCCESS': {
+            return Object.assign({}, state, {
+                loading: false,
+                data: action.data,
+            })
+        }
         default: {
             return state;
         }
