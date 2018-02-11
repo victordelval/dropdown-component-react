@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './SelectorList.css'
+import './SelectorList.css';
+import SelectorItem from '../SelectorItem';
 
 
 /**
@@ -29,11 +30,10 @@ class SelectorList extends React.Component {
                 return <span className={ listClassName }>No data available</span>;
             } else {
                 return <ul className={ listClassName }>
-                    { this.props.data.map(country =>
-                        <li key={ country.code }
+                    { this.props.data.map(item =>
+                        <SelectorItem
                             onClick={ this.props.onClick }
-                            className='item'
-                            data-code={ country.code }>{ country.name }</li>
+                            item={ item } />
                     )}
                 </ul>;
             }
