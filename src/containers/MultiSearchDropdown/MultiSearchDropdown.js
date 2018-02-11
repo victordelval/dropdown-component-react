@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { expandDropdown, collapseDropdown, startRequest, successRequest } from '../../actions/actions';
+import { expandDropdown, collapseDropdown } from '../../actions/actions';
+import { startRequest, successRequest } from '../../actions/actions';
+import { addLabel } from '../../actions/actions';
 
 import './MultiSearchDropdown.css';
 
@@ -13,9 +15,8 @@ import SelectorList from '../../components/SelectorList';
 
 
 /**
- * Multiple search selection dropdown component
+ * Multiple search selection dropdown container component
  */
-// class MultiSearchDropdown extends Dropdown {
 class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
@@ -25,32 +26,35 @@ class MultiSearchDropdown extends React.Component {
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
         search: PropTypes.string,
         queried: PropTypes.bool,
-        dropdownCss: PropTypes.string
+        dropdownCss: PropTypes.string,
+
+        url: PropTypes.string.isRequired,
+        responseKey: PropTypes.string
     }
 
     constructor(props) {
         super(props);
 
-        // Binds
-        this.onClick = this.onClick.bind(this);
+        this.onClickBox = this.onClickBox.bind(this);
+        this.onClickList = this.onClickList.bind(this);
     }
 
     componentDidMount() {
-        // this.setState({ loading: true });
+
         this.props.dispatch(startRequest());
 
-        fetch(process.env.REACT_APP_COUNTRIES_URL)
+        fetch(this.props.url)
             .then(res => {
                 return res.json();
             }).then(json => {
-                this.props.dispatch(successRequest(json.countries));
+                this.props.dispatch(successRequest(json[this.props.responseKey]));
             }).catch(err => {
                 // TODO - Handle error
                 console.log(err);
             });
     }
 
-    onClick(e) {
+    onClickBox(e) {
         if (!this.props.expanded) {
             this.props.dispatch(expandDropdown());
         } else {
@@ -58,19 +62,34 @@ class MultiSearchDropdown extends React.Component {
         }
     }
 
+    onClickList(e) {
+        let item = e.target;
+
+        if (item.className === 'disabled-item')
+            return;
+
+        item.className = 'disabled-item';
+
+        let selectedItem = {
+            code: item.getAttribute('data-code'),
+            name: item.textContent
+        }
+        this.props.dispatch(addLabel(selectedItem));
+    }
+
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
-                onClick={ this.onClick }
+                onClick={ this.onClickBox }
                 expanded={ this.props.expanded }
-                change={ this.props.change }
+                selected={ this.props.selected }
                 dropdownCss={ selectClassName } />
             <SelectorList
+                onClick={ this.onClickList }
                 data={ this.props.data }
                 loading={ this.props.loading }
                 expanded={ this.props.expanded }
-                change={ this.props.change }
                 dropdownCss={ selectClassName } />
         </div>;
     }

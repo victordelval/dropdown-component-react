@@ -31,6 +31,14 @@ const reducer = (state = initialState, action) => {
                 data: action.data,
             })
         }
+        case 'ADD_LABEL': {
+            let selectedArr = state.selected.slice(0);
+            selectedArr.push(action.selected);
+            return Object.assign({}, state, {
+                selected: selectedArr,
+            })
+        }
+
         default: {
             return state;
         }

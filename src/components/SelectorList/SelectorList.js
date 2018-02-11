@@ -15,6 +15,7 @@ class SelectorList extends React.Component {
         data: PropTypes.arrayOf(PropTypes.object).isRequired,
         loading: PropTypes.bool.isRequired,
         expanded: PropTypes.bool.isRequired,
+        onClick: PropTypes.func.isRequired,
         dropdownCss: PropTypes.string
     }
 
@@ -29,7 +30,10 @@ class SelectorList extends React.Component {
             } else {
                 return <ul className={ listClassName }>
                     { this.props.data.map(country =>
-                        <li data-code={country.code}>{ country.name }</li>
+                        <li key={ country.code }
+                            onClick={ this.props.onClick }
+                            className='item'
+                            data-code={ country.code }>{ country.name }</li>
                     )}
                 </ul>;
             }

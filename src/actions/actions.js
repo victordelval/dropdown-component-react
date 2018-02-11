@@ -23,3 +23,10 @@ export const successRequest = data => {
         data
     }
 }
+
+export const addLabel = selected => {
+    return {
+        type: 'ADD_LABEL',
+        selected
+    }
+}

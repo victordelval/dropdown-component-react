@@ -2,3 +2,13 @@
     height: 250px;
     overflow-y: auto;
 }
+
+.selector-list > .item {
+    cursor: pointer;
+}
+
+.selector-list > .disabled-item {
+    background-color: #ececec;
+    color: #808080;
+    cursor: not-allowed;
+}
