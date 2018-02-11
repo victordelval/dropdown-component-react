@@ -1,13 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import MultiSearchDropdown from './MultiSearchDropdown';
+import { connect } from 'react-redux';
+
+import { MultiSearchDropdown } from './MultiSearchDropdown';
 
 
 describe('MultiSearchDropdown', () => {
 
     it('Should render without crashing', () => {
-        shallow(<MultiSearchDropdown loading={true} data={[]} />);
+
+        const wrapper = shallow(<MultiSearchDropdown
+            dispatch={ () => {} }
+            loading={ true }
+            expanded={ false }
+            data={ [] }
+            selected={ [] }
+            url='http://localhost:9000' />);
     });
 
 })

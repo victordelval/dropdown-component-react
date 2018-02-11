@@ -17,7 +17,7 @@ import SelectorList from '../../components/SelectorList';
 /**
  * Multiple search selection dropdown container component
  */
-class MultiSearchDropdown extends React.Component {
+export class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
         loading: PropTypes.bool.isRequired,

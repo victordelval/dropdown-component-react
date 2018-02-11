@@ -41,9 +41,6 @@ class CountriesContainer extends React.Component {
     render() {
         const dropdownClassName = 'countries-dropdown';
 
-        console.log("CountriesContainer >>> this.props.data")
-        console.log(this.props.data)
-
         return <main className="countries-container">
             <h1 className="countries-container-text">Dropdown component</h1>
             <hr/>

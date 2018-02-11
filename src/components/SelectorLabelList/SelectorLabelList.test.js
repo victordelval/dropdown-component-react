@@ -7,7 +7,11 @@ import SelectorLabelList from './SelectorLabelList';
 describe('SelectorLabelList', () => {
 
     it('Should render without crashing', () => {
-        shallow(<SelectorLabelList />);
+        let selectedArr = [
+            {code: 'SP', name: 'Spain'},
+            {code: 'PT', name: 'Portugal'}
+        ]
+        shallow(<SelectorLabelList selected={ selectedArr }/>);
     });
 
 })
