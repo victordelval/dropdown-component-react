@@ -14,15 +14,17 @@ import SelectorLabelList from '../SelectorLabelList';
 class SelectorBox extends React.Component {
 
     static propTypes = {
-        onClick: PropTypes.func.isRequired,
+        onClickBox: PropTypes.func.isRequired,
+        onClickLabel: PropTypes.func.isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
         dropdownCss: PropTypes.string
     }
 
     render() {
-        return <span onClick={ this.props.onClick } className={ this.props.dropdownCss }>
+        return <span onClick={ this.props.onClickBox } className={ this.props.dropdownCss }>
             <SelectorSearch />
             <SelectorLabelList
+                onClickLabel={ this.props.onClickLabel }
                 selected={ this.props.selected } />
         </span>;
     }

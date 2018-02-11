@@ -11,11 +11,11 @@ class SelectorItem extends React.Component {
     }
 
     render() {
-        return <li key={ this.props.item.code }
+        return <li
+            key={ this.props.item.code }
             onClick={ this.props.onClick }
             className={ this.props.selected ? 'selected-item' : 'item' }
-            data-code={ this.props.item.code }
-        >{ this.props.item.name }</li>;
+            data-code={ this.props.item.code } >{ this.props.item.name }</li>;
     }
 
 }

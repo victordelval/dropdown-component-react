@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { _containsObject } from '../../utils'
+
 import './SelectorList.css';
 import SelectorItem from '../SelectorItem';
 
@@ -27,68 +29,22 @@ class SelectorList extends React.Component {
 
             if (this.props.loading) {
                 return <p className={ listClassName }>Loading...</p>;
+
             } else if (this.props.data.length === 0) {
                 return <span className={ listClassName }>No data available</span>;
+
             } else {
-                console.log(">>>> this.props.selected")
-                console.log(this.props.selected)
                 return <ul className={ listClassName }>
                     { this.props.data.map(item =>
-                        // console.log(item.name);
-                        // console.log(this._containsObject(item, this.props.selected));
                         <SelectorItem
+                            key={ item.name }
                             onClick={ this.props.onClick }
                             item={ item }
-                            selected={ this._containsObject(item, this.props.selected) } />
-                    )}
+                            selected={ _containsObject('boolean', item, this.props.selected) } />
+                    ) }
                 </ul>;
             }
-
-        } else {
-            return null;
         }
-    }
-
-    _containsObject(obj, list) {
-        console.log(">>> _containsObj")
-        console.log(obj)
-        console.log(list)
-        var i;
-        for (i = 0; i < list.length; i++) {
-            if (this._isEquivalent(list[i], obj)) {
-            // if (list[i] === obj) {
-                console.log(">>> true")
-                return true;
-            }
-        }
-        console.log(">>> false")
-        return false;
-    }
-
-    _isEquivalent(a, b) {
-        // Create arrays of property names
-        var aProps = Object.getOwnPropertyNames(a);
-        var bProps = Object.getOwnPropertyNames(b);
-
-        // If number of properties is different,
-        // objects are not equivalent
-        if (aProps.length != bProps.length) {
-            return false;
-        }
-
-        for (var i = 0; i < aProps.length; i++) {
-            var propName = aProps[i];
-
-            // If values of same property are not equal,
-            // objects are not equivalent
-            if (a[propName] !== b[propName]) {
-                return false;
-            }
-        }
-
-        // If we made it this far, objects
-        // are considered equivalent
-        return true;
     }
 
     render() {

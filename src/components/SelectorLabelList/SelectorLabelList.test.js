@@ -11,7 +11,9 @@ describe('SelectorLabelList', () => {
             {code: 'SP', name: 'Spain'},
             {code: 'PT', name: 'Portugal'}
         ]
-        shallow(<SelectorLabelList selected={ selectedArr }/>);
+        shallow(<SelectorLabelList
+            onClickLabel={ () => {} }
+            selected={ selectedArr } />);
     });
 
 })

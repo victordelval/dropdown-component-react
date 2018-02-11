@@ -7,13 +7,9 @@ import SelectorItem from './SelectorItem';
 describe('SelectorItem', () => {
 
     it('Should render a selector list item', () => {
-        let onClick = () => {
-
-        };
         let item = {code: 'SP', name: 'Spain'};
-
         shallow(<SelectorItem
-            onClick={ onClick }
+            onClick={ () => {} }
             item={ item }
             selected={ false } />);
 

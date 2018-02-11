@@ -30,3 +30,10 @@ export const addLabel = selected => {
         selected
     }
 }
+
+export const removeLabel = selected => {
+    return {
+        type: 'REMOVE_LABEL',
+        selected
+    }
+}

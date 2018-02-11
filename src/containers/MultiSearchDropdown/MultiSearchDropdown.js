@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 import { expandDropdown, collapseDropdown } from '../../actions/actions';
 import { startRequest, successRequest } from '../../actions/actions';
-import { addLabel } from '../../actions/actions';
+import { addLabel, removeLabel } from '../../actions/actions';
 
 import './MultiSearchDropdown.css';
 
-import Dropdown from '../../components/Dropdown/';
+// import Dropdown from '../../components/Dropdown/';
 import SelectorBox from '../../components/SelectorBox';
 import SelectorList from '../../components/SelectorList';
 
@@ -37,6 +37,7 @@ export class MultiSearchDropdown extends React.Component {
 
         this.onClickBox = this.onClickBox.bind(this);
         this.onClickList = this.onClickList.bind(this);
+        this.onClickLabel = this.onClickLabel.bind(this);
     }
 
     componentDidMount() {
@@ -55,6 +56,8 @@ export class MultiSearchDropdown extends React.Component {
     }
 
     onClickBox(e) {
+        if (e.target.nodeName === 'LABEL') return;
+
         if (!this.props.expanded) {
             this.props.dispatch(expandDropdown());
         } else {
@@ -77,11 +80,23 @@ export class MultiSearchDropdown extends React.Component {
         this.props.dispatch(addLabel(selectedItem));
     }
 
+    onClickLabel(e) {
+        let item = e.target;
+
+        let selectedItem = {
+            code: item.getAttribute('data-code'),
+            name: item.textContent
+        }
+
+        this.props.dispatch(removeLabel(selectedItem));
+    }
+
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
-                onClick={ this.onClickBox }
+                onClickBox={ this.onClickBox }
+                onClickLabel={ this.onClickLabel }
                 expanded={ this.props.expanded }
                 selected={ this.props.selected }
                 dropdownCss={ selectClassName } />
