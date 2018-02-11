@@ -12,7 +12,10 @@ describe('SelectorItem', () => {
         };
         let item = {code: 'SP', name: 'Spain'};
 
-        shallow(<SelectorItem onClick={ onClick } item={ item } />);
+        shallow(<SelectorItem
+            onClick={ onClick }
+            item={ item }
+            selected={ false } />);
 
         // expect(label.text()).toEqual('Label');
         // expect(label.find('label').length).toEqual(1);

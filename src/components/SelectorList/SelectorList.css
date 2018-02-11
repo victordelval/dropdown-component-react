@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.selector-list > .disabled-item {
+.selector-list > .selected-item {
     background-color: #ececec;
     color: #808080;
     cursor: not-allowed;

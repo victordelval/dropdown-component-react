@@ -65,10 +65,10 @@ export class MultiSearchDropdown extends React.Component {
     onClickList(e) {
         let item = e.target;
 
-        if (item.className === 'disabled-item')
+        if (item.className === 'selected-item')
             return;
 
-        item.className = 'disabled-item';
+        item.className = 'selected-item';
 
         let selectedItem = {
             code: item.getAttribute('data-code'),
@@ -88,6 +88,7 @@ export class MultiSearchDropdown extends React.Component {
             <SelectorList
                 onClick={ this.onClickList }
                 data={ this.props.data }
+                selected={ this.props.selected }
                 loading={ this.props.loading }
                 expanded={ this.props.expanded }
                 dropdownCss={ selectClassName } />

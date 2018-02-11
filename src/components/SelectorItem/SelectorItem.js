@@ -6,13 +6,14 @@ class SelectorItem extends React.Component {
 
     static propTypes = {
         item: PropTypes.object.isRequired,
-        onClick: PropTypes.func.isRequired
+        onClick: PropTypes.func.isRequired,
+        selected: PropTypes.bool.isRequired
     }
 
     render() {
         return <li key={ this.props.item.code }
             onClick={ this.props.onClick }
-            className='item'
+            className={ this.props.selected ? 'selected-item' : 'item' }
             data-code={ this.props.item.code }
         >{ this.props.item.name }</li>;
     }
