@@ -61,9 +61,9 @@ class SelectorList extends React.Component {
     }
 
     render() {
-        return <span>
+        return <div>
             { this.renderList() }
-        </span>;
+        </div>;
     }
 
 }
