@@ -34,7 +34,10 @@ Production dependencies:
   },
 ```
 
+### Testing the components
 
+* **Jest**, a test runner built and maintained by Facebook.
+* **Enzyme**, is a suite of test utilities for testing React that makes it incredibly easy to render, search and make assertions on your components
 
 
 ## Project Structure
