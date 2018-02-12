@@ -1,6 +1,6 @@
 .multi-search-dropdown {
-    /* height: 38px; */
-    width: 360px;
+    min-height: 38px;
+    /* width: 360px; */
     padding: 6px 10px;
     background-color: #fff;
     border: 1px solid #D1D1D1;

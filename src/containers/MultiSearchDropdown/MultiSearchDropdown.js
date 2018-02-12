@@ -41,9 +41,14 @@ export class MultiSearchDropdown extends React.Component {
         this.onClickList = this.onClickList.bind(this);
         this.onClickLabel = this.onClickLabel.bind(this);
         this.onChangeSearch = this.onChangeSearch.bind(this);
+
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     componentDidMount() {
+
+        document.addEventListener('mousedown', this.handleClickOutside);
 
         this.props.dispatch(startRequest());
 
@@ -58,13 +63,32 @@ export class MultiSearchDropdown extends React.Component {
             });
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    /**
+     * Set the wrapper ref
+     */
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+    /**
+     * Alert if clicked on outside of element
+     */
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.props.dispatch(collapseDropdown());
+        }
+    }
+
     onClickBox(e) {
         if (e.target.nodeName === 'LABEL') return;
 
         if (!this.props.expanded) {
+            e.target.getElementsByTagName('input')[0].focus();
             this.props.dispatch(expandDropdown());
-        } else {
-            this.props.dispatch(collapseDropdown());
         }
     }
 
@@ -125,7 +149,7 @@ export class MultiSearchDropdown extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div ref={this.setWrapperRef}>
             { this.renderSelector() }
         </div>;
     }
