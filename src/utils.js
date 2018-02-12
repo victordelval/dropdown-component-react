@@ -1,3 +1,5 @@
+// Selection utils
+
 export const _containsObject = (type, obj, list) => {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -33,4 +35,13 @@ const _isEquivalent = (a, b) => {
     // If we made it this far, objects
     // are considered equivalent
     return true;
+}
+
+
+// Search utils
+
+export const _filterByName = (search, list) => {
+    return list.filter(function(item) {
+        return item.name.toUpperCase().includes(search.toUpperCase());
+    });
 }

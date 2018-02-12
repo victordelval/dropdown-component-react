@@ -16,6 +16,7 @@ describe('MultiSearchDropdown', () => {
             expanded={ false }
             data={ [] }
             selected={ [] }
+            filtered={ [] }
             url='http://localhost:9000' />);
     });
 

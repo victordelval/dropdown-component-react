@@ -37,3 +37,17 @@ export const removeLabel = selected => {
         selected
     }
 }
+
+export const filterList = search => {
+    return {
+        type: 'FILTER_LIST',
+        search
+    }
+}
+
+export const resetFilter = search => {
+    return {
+        type: 'RESET_FILTER',
+        search
+    }
+}

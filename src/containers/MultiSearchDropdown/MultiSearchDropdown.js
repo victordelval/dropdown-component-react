@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { expandDropdown, collapseDropdown } from '../../actions/actions';
 import { startRequest, successRequest } from '../../actions/actions';
 import { addLabel, removeLabel } from '../../actions/actions';
+import { filterList, resetFilter } from '../../actions/actions';
 
 import './MultiSearchDropdown.css';
 
@@ -24,8 +25,9 @@ export class MultiSearchDropdown extends React.Component {
         expanded: PropTypes.bool.isRequired,
         data: PropTypes.arrayOf(PropTypes.object).isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+        filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
         search: PropTypes.string,
-        queried: PropTypes.bool,
+        // queried: PropTypes.bool,
         dropdownCss: PropTypes.string,
 
         url: PropTypes.string.isRequired,
@@ -38,6 +40,7 @@ export class MultiSearchDropdown extends React.Component {
         this.onClickBox = this.onClickBox.bind(this);
         this.onClickList = this.onClickList.bind(this);
         this.onClickLabel = this.onClickLabel.bind(this);
+        this.onChangeSearch = this.onChangeSearch.bind(this);
     }
 
     componentDidMount() {
@@ -91,19 +94,30 @@ export class MultiSearchDropdown extends React.Component {
         this.props.dispatch(removeLabel(selectedItem));
     }
 
+    onChangeSearch(e) {
+        let input = e.target.value;
+        if (input === '')
+            this.props.dispatch(resetFilter(e.target.value));
+        else
+            this.props.dispatch(filterList(e.target.value));
+    }
+
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
                 onClickBox={ this.onClickBox }
                 onClickLabel={ this.onClickLabel }
+                onChangeSearch={ this.onChangeSearch }
                 expanded={ this.props.expanded }
                 selected={ this.props.selected }
                 dropdownCss={ selectClassName } />
             <SelectorList
                 onClick={ this.onClickList }
                 data={ this.props.data }
+                filtered={ this.props.filtered }
                 selected={ this.props.selected }
+                search={ this.props.search }
                 loading={ this.props.loading }
                 expanded={ this.props.expanded }
                 dropdownCss={ selectClassName } />
@@ -119,8 +133,8 @@ export class MultiSearchDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
-    let { loading, expanded, data, selected, search, queried, dropdownCss } = state;
-    return { loading, expanded, data, selected, search, queried, dropdownCss };
+    let { loading, expanded, data, filtered, selected, search, dropdownCss } = state;
+    return { loading, expanded, data, filtered, selected, search, dropdownCss };
 }
 
 export default connect(mapStateToProps)(MultiSearchDropdown);

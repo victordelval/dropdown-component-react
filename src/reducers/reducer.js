@@ -1,12 +1,13 @@
-import { _containsObject } from '../utils'
+import { _containsObject, _filterByName } from '../utils'
 
 const initialState = {
     loading: false,
     expanded: false,
     data: [],
     selected: [],
+    filtered: [],
     search: '',
-    queried: false,
+    // queried: false,
     dropdownCss: ''
 }
 
@@ -47,6 +48,20 @@ const reducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 selected: selectedArr
             })
+        }
+        case 'FILTER_LIST': {
+            let dataArr = state.data.slice(0);
+            let filteredData = _filterByName(action.search, dataArr)
+            return Object.assign({}, state, {
+                filtered: filteredData,
+                search: action.search
+            })
+        }
+        case 'RESET_FILTER': {
+            return Object.assign({}, state, {
+                filtered: [],
+                search: ''
+            });
         }
 
         default: {

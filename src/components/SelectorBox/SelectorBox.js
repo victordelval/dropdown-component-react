@@ -16,13 +16,15 @@ class SelectorBox extends React.Component {
     static propTypes = {
         onClickBox: PropTypes.func.isRequired,
         onClickLabel: PropTypes.func.isRequired,
+        onChangeSearch: PropTypes.func.isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
         dropdownCss: PropTypes.string
     }
 
     render() {
         return <span onClick={ this.props.onClickBox } className={ this.props.dropdownCss }>
-            <SelectorSearch />
+            <SelectorSearch
+                onChange={ this.props.onChangeSearch } />
             <SelectorLabelList
                 onClickLabel={ this.props.onClickLabel }
                 selected={ this.props.selected } />
