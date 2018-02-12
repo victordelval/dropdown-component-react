@@ -87,7 +87,8 @@ export class MultiSearchDropdown extends React.Component {
         if (e.target.nodeName === 'LABEL') return;
 
         if (!this.props.expanded) {
-            e.target.getElementsByTagName('input')[0].focus();
+            if (e.target.nodeName === 'INPUT') e.target.focus();
+            else e.target.getElementsByTagName('input')[0].focus();
             this.props.dispatch(expandDropdown());
         }
     }
