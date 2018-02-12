@@ -52,6 +52,7 @@ class SelectorList extends React.Component {
                             key={ item.name }
                             onClick={ this.props.onClick }
                             item={ item }
+                            search={ this.props.search }
                             selected={ _containsObject('boolean', item, this.props.selected) } />
                     ) }
                 </ul>;
