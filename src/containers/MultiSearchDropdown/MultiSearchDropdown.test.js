@@ -43,7 +43,6 @@ describe('<MultiSearchDropdown />', () => {
 
         expect(wrapper.find('SelectorBox').length).toBe(1);
         expect(wrapper.find('SelectorList').length).toBe(1);
-        // expect(wrapper.find(<SelectorList />)).to.have.length(1);
     });
 
 });
