@@ -7,8 +7,19 @@ import LabelButton from '../LabelButton';
 class SelectorLabelList extends React.Component {
 
     static propTypes = {
-        onClickLabel: PropTypes.func.isRequired,
+        // onClickLabel: PropTypes.func.isRequired,
         selected: PropTypes.arrayOf(PropTypes.object)
+    }
+
+    onClick(e) {
+        let item = e.target;
+
+        let selectedItem = {
+            code: item.getAttribute('data-code'),
+            name: item.textContent
+        }
+
+        // this.props.dispatch(removeLabel(selectedItem));
     }
 
     render() {
@@ -16,7 +27,7 @@ class SelectorLabelList extends React.Component {
             { this.props.selected.map(item =>
                 <LabelButton
                     key={`${item.code}-${item.name}`}
-                    onClick={ this.props.onClickLabel }
+                    onClick={ this.onClick }
                     code={item.code}
                     name={item.name} />
             )}

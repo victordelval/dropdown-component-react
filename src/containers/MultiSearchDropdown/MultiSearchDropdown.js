@@ -21,14 +21,14 @@ import SelectorList from '../../components/SelectorList';
 export class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
-        loading: PropTypes.bool.isRequired,
-        expanded: PropTypes.bool.isRequired,
-        data: PropTypes.arrayOf(PropTypes.object).isRequired,
-        selected: PropTypes.arrayOf(PropTypes.object).isRequired,
-        filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
-        search: PropTypes.string,
-        // queried: PropTypes.bool,
-        dropdownCss: PropTypes.string,
+        // loading: PropTypes.bool.isRequired,
+        // expanded: PropTypes.bool.isRequired,
+        // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+        // selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+        // filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
+        // search: PropTypes.string,
+        // // queried: PropTypes.bool,
+        // dropdownCss: PropTypes.string,
 
         url: PropTypes.string.isRequired,
         responseKey: PropTypes.string
@@ -37,26 +37,37 @@ export class MultiSearchDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        this.onClickBox = this.onClickBox.bind(this);
-        this.onClickList = this.onClickList.bind(this);
-        this.onClickLabel = this.onClickLabel.bind(this);
-        this.onChangeSearch = this.onChangeSearch.bind(this);
+        // this.onClickBox = this.onClickBox.bind(this);
+        // this.onClickList = this.onClickList.bind(this);
+        // this.onClickLabel = this.onClickLabel.bind(this);
+        // this.onChangeSearch = this.onChangeSearch.bind(this);
 
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
+
+        this.state = {
+            loading: false,
+            expanded: false,
+            data: [],
+            selected: [],
+            filtered: [],
+            search: '',
+            // queried: false,
+            dropdownCss: ''
+        }
     }
 
     componentDidMount() {
 
         document.addEventListener('mousedown', this.handleClickOutside);
 
-        this.props.dispatch(startRequest());
+        // this.props.dispatch(startRequest());
 
         fetch(this.props.url)
             .then(res => {
                 return res.json();
             }).then(json => {
-                this.props.dispatch(successRequest(json[this.props.responseKey]));
+                // this.props.dispatch(successRequest(json[this.props.responseKey]));
             }).catch(err => {
                 // TODO - Handle error
                 console.log(err);
@@ -79,17 +90,17 @@ export class MultiSearchDropdown extends React.Component {
      */
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.props.dispatch(collapseDropdown());
+            // this.props.dispatch(collapseDropdown());
         }
     }
 
     onClickBox(e) {
         if (e.target.nodeName === 'LABEL') return;
 
-        if (!this.props.expanded) {
+        if (!this.state.expanded) {
             if (e.target.nodeName === 'INPUT') e.target.focus();
             else e.target.getElementsByTagName('input')[0].focus();
-            this.props.dispatch(expandDropdown());
+            // this.props.dispatch(expandDropdown());
         }
     }
 
@@ -105,7 +116,7 @@ export class MultiSearchDropdown extends React.Component {
             code: item.getAttribute('data-code'),
             name: item.textContent
         }
-        this.props.dispatch(addLabel(selectedItem));
+        // this.props.dispatch(addLabel(selectedItem));
     }
 
     onClickLabel(e) {
@@ -116,35 +127,39 @@ export class MultiSearchDropdown extends React.Component {
             name: item.textContent
         }
 
-        this.props.dispatch(removeLabel(selectedItem));
+        // this.props.dispatch(removeLabel(selectedItem));
     }
 
     onChangeSearch(e) {
         let input = e.target.value;
-        if (input === '')
-            this.props.dispatch(resetFilter(e.target.value));
-        else
-            this.props.dispatch(filterList(e.target.value));
+        if (input === '') {
+
+        }
+            // this.props.dispatch(resetFilter(e.target.value));
+        else {
+
+        }
+            // this.props.dispatch(filterList(e.target.value));
     }
 
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
-                onClickBox={ this.onClickBox }
-                onClickLabel={ this.onClickLabel }
-                onChangeSearch={ this.onChangeSearch }
-                expanded={ this.props.expanded }
-                selected={ this.props.selected }
+                // onClickBox={ this.onClickBox }
+                // onClickLabel={ this.onClickLabel }
+                // onChangeSearch={ this.onChangeSearch }
+                expanded={ this.state.expanded }
+                selected={ this.state.selected }
                 dropdownCss={ selectClassName } />
             <SelectorList
-                onClick={ this.onClickList }
-                data={ this.props.data }
-                filtered={ this.props.filtered }
-                selected={ this.props.selected }
-                search={ this.props.search }
-                loading={ this.props.loading }
-                expanded={ this.props.expanded }
+                // onClick={ this.onClickList }
+                data={ this.state.data }
+                filtered={ this.state.filtered }
+                selected={ this.state.selected }
+                search={ this.state.search }
+                loading={ this.state.loading }
+                expanded={ this.state.expanded }
                 dropdownCss={ selectClassName } />
         </div>;
     }
@@ -157,9 +172,4 @@ export class MultiSearchDropdown extends React.Component {
 
 }
 
-const mapStateToProps = state => {
-    let { loading, expanded, data, filtered, selected, search, dropdownCss } = state;
-    return { loading, expanded, data, filtered, selected, search, dropdownCss };
-}
-
-export default connect(mapStateToProps)(MultiSearchDropdown);
+export default MultiSearchDropdown;

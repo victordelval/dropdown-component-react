@@ -15,7 +15,7 @@ import SelectorItem from '../SelectorItem';
 class SelectorList extends React.Component {
 
     static propTypes = {
-        onClick: PropTypes.func.isRequired,
+        // onClick: PropTypes.func.isRequired,
         data: PropTypes.arrayOf(PropTypes.object).isRequired,
         filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -25,7 +25,23 @@ class SelectorList extends React.Component {
         dropdownCss: PropTypes.string
     }
 
+    // constructor(props) {
+    //     super(props);
+
+    //     this.state = {
+    //         loading: false,
+    //         expanded: false,
+    //         data: [],
+    //         selected: [],
+    //         filtered: [],
+    //         search: '',
+    //         // queried: false,
+    //         dropdownCss: ''
+    //     }
+    // }
+
     renderList() {
+        console.log(">>>> renderList")
         if (this.props.expanded) {
             let listClassName = `selector-list ${ this.props.dropdownCss }`;
 
@@ -50,7 +66,7 @@ class SelectorList extends React.Component {
                     { dataDisplay.map(item =>
                         <SelectorItem
                             key={ item.name }
-                            onClick={ this.props.onClick }
+                            // onClick={ this.props.onClick }
                             item={ item }
                             search={ this.props.search }
                             selected={ _containsObject('boolean', item, this.props.selected) } />
