@@ -12,7 +12,7 @@ import SelectorList from '../../components/SelectorList';
 /**
  * Multiple search selection dropdown container component
  */
-export class MultiSearchDropdown extends React.Component {
+class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
         url: PropTypes.string.isRequired,
@@ -79,8 +79,9 @@ export class MultiSearchDropdown extends React.Component {
      * Alert if clicked on outside of element
      */
     handleClickOutside(event) {
+        // collapse dropdown
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            // this.props.dispatch(collapseDropdown());
+            this.setState({ expanded: false });
         }
     }
 
