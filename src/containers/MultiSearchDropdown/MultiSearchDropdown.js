@@ -8,6 +8,8 @@ import { startRequest, successRequest } from '../../actions/actions';
 import { addLabel, removeLabel } from '../../actions/actions';
 import { filterList, resetFilter } from '../../actions/actions';
 
+import { _containsObject, _filterByName } from '../../utils'
+
 import './MultiSearchDropdown.css';
 
 // import Dropdown from '../../components/Dropdown/';
@@ -39,7 +41,7 @@ export class MultiSearchDropdown extends React.Component {
 
         this.onClickBox = this.onClickBox.bind(this);
         this.onClickListItem = this.onClickListItem.bind(this);
-        // this.onClickLabel = this.onClickLabel.bind(this);
+        this.onClickLabel = this.onClickLabel.bind(this);
         // this.onChangeSearch = this.onChangeSearch.bind(this);
 
         this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -116,28 +118,37 @@ export class MultiSearchDropdown extends React.Component {
         if (item.className === 'selected-item')
             return;
 
+        // add label
         item.className = 'selected-item';
 
         let selectedItem = {
             code: item.getAttribute('data-code'),
             name: item.textContent
         }
-        // add label
+
         let selectedArr = this.state.selected.slice(0);
         selectedArr.push(selectedItem);
+
         this.setState({ selected: selectedArr })
     }
 
-    // onClickLabel(e) {
-    //     let item = e.target;
+    onClickLabel(e) {
+        let item = e.target;
 
-    //     let selectedItem = {
-    //         code: item.getAttribute('data-code'),
-    //         name: item.textContent
-    //     }
+        // remove label
 
-    //     // this.props.dispatch(removeLabel(selectedItem));
-    // }
+        let selectedItem = {
+            code: item.getAttribute('data-code'),
+            name: item.textContent
+        }
+
+        let selectedArr = this.state.selected.slice(0);
+
+        let index = _containsObject('index', selectedItem, selectedArr)
+        if (typeof index === 'number') selectedArr.splice(index, 1)
+
+        this.setState({ selected: selectedArr })
+    }
 
     // onChangeSearch(e) {
     //     let input = e.target.value;
@@ -156,7 +167,7 @@ export class MultiSearchDropdown extends React.Component {
         return <div>
             <SelectorBox
                 onClick={ this.onClickBox }
-                // onClickLabel={ this.onClickLabel }
+                onClickLabel={ this.onClickLabel }
                 // onChangeSearch={ this.onChangeSearch }
                 expanded={ this.state.expanded }
                 selected={ this.state.selected }
