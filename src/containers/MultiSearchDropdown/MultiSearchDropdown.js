@@ -1,18 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-
-import { expandDropdown, collapseDropdown } from '../../actions/actions';
-import { startRequest, successRequest } from '../../actions/actions';
-import { addLabel, removeLabel } from '../../actions/actions';
-import { filterList, resetFilter } from '../../actions/actions';
-
 import { _containsObject, _filterByName } from '../../utils'
 
 import './MultiSearchDropdown.css';
 
-// import Dropdown from '../../components/Dropdown/';
 import SelectorBox from '../../components/SelectorBox';
 import SelectorList from '../../components/SelectorList';
 
@@ -23,15 +15,6 @@ import SelectorList from '../../components/SelectorList';
 export class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
-        // loading: PropTypes.bool.isRequired,
-        // expanded: PropTypes.bool.isRequired,
-        // data: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // selected: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // search: PropTypes.string,
-        // // queried: PropTypes.bool,
-        // dropdownCss: PropTypes.string,
-
         url: PropTypes.string.isRequired,
         responseKey: PropTypes.string
     }

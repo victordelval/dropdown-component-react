@@ -11,17 +11,6 @@ class SelectorLabelList extends React.Component {
         selected: PropTypes.arrayOf(PropTypes.object)
     }
 
-    // onClick(e) {
-    //     let item = e.target;
-
-    //     let selectedItem = {
-    //         code: item.getAttribute('data-code'),
-    //         name: item.textContent
-    //     }
-
-    //     // this.props.dispatch(removeLabel(selectedItem));
-    // }
-
     render() {
         return <span>
             { this.props.selected.map(item =>

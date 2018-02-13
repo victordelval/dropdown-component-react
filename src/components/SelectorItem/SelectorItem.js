@@ -12,28 +12,6 @@ class SelectorItem extends React.Component {
         search: PropTypes.string,
     }
 
-    // onClick = (e) => {
-    //     let item = e.target;
-
-    //     if (item.className === 'selected-item')
-    //         return;
-
-    //     item.className = 'selected-item';
-
-    //     let selectedItem = {
-    //         code: item.getAttribute('data-code'),
-    //         name: item.textContent
-    //     }
-    //     // add label
-    //     let selectedArr = this.props.selected.slice(0);
-    //     selectedArr.push(selectedItem);
-
-    //     // this.setState({ selected: selectedArr })
-    //     this.props.selected = selectedArr;
-
-    //     console.log(this.props)
-    // }
-
     _boldSearchString(str, find){
         let parts = str.split(find);
         return <span>

@@ -19,16 +19,7 @@ class SelectorBox extends React.Component {
         onClickLabel: PropTypes.func.isRequired,
         onChangeSearch: PropTypes.func.isRequired,
         dropdownCss: PropTypes.string
-        // expanded: PropTypes.bool.isRequired,
     }
-
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         expanded: props.expanded
-    //     }
-    // }
 
     render() {
         return <span

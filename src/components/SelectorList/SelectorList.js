@@ -25,23 +25,8 @@ class SelectorList extends React.Component {
         dropdownCss: PropTypes.string
     }
 
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         loading: false,
-    //         expanded: false,
-    //         data: [],
-    //         selected: [],
-    //         filtered: [],
-    //         search: '',
-    //         // queried: false,
-    //         dropdownCss: ''
-    //     }
-    // }
-
     renderList() {
-        console.log(">>>> renderList")
+
         if (this.props.expanded) {
             let listClassName = `selector-list ${ this.props.dropdownCss }`;
 

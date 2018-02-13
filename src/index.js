@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import store from './store';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 
 import './index.css';
 
-import MultiSearchDropdown from './containers/MultiSearchDropdown';
+// import Dropdown from '../../components/Dropdown/';
 // import CountriesContainer from './containers/CountriesContainer';
+import MultiSearchDropdown from './containers/MultiSearchDropdown';
 
 require('dotenv').config()
 
 ReactDOM.render(
-    <Provider store={ store } >
         <main className="countries-container">
-            <h1 className="countries-container-text">Dropdown component</h1>
+            <h1 className="countries-container-text">Dropdown components</h1>
             <hr/>
-            <p className="countries-container-text countries-container-p">This is a Multiple Search Selection Dropdown component:</p>
+            <p className="countries-container-text countries-container-p">This is a "Multiple Search Selection" Dropdown component:</p>
             <div className="row">
                 <div className="four columns">&nbsp;</div>
                 <div className="four columns">
@@ -26,7 +26,6 @@ ReactDOM.render(
                 </div>
                 <div className="four columns"></div>
             </div>
-        </main>
-    </Provider>,
+        </main>,
     document.getElementById('root')
 );
