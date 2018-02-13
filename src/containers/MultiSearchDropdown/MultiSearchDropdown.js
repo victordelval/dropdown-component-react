@@ -38,7 +38,7 @@ export class MultiSearchDropdown extends React.Component {
         super(props);
 
         this.onClickBox = this.onClickBox.bind(this);
-        // this.onClickList = this.onClickList.bind(this);
+        this.onClickListItem = this.onClickListItem.bind(this);
         // this.onClickLabel = this.onClickLabel.bind(this);
         // this.onChangeSearch = this.onChangeSearch.bind(this);
 
@@ -61,13 +61,18 @@ export class MultiSearchDropdown extends React.Component {
 
         document.addEventListener('mousedown', this.handleClickOutside);
 
-        // this.props.dispatch(startRequest());
+        // start request
+        this.setState({ loading: true })
 
         fetch(this.props.url)
             .then(res => {
                 return res.json();
             }).then(json => {
-                // this.props.dispatch(successRequest(json[this.props.responseKey]));
+                // request success
+                this.setState({
+                    loading: false,
+                    data: json[this.props.responseKey]
+                })
             }).catch(err => {
                 // TODO - Handle error
                 console.log(err);
@@ -105,7 +110,7 @@ export class MultiSearchDropdown extends React.Component {
         }
     }
 
-    onClickList(e) {
+    onClickListItem(e) {
         let item = e.target;
 
         if (item.className === 'selected-item')
@@ -117,31 +122,34 @@ export class MultiSearchDropdown extends React.Component {
             code: item.getAttribute('data-code'),
             name: item.textContent
         }
-        // this.props.dispatch(addLabel(selectedItem));
+        // add label
+        let selectedArr = this.state.selected.slice(0);
+        selectedArr.push(selectedItem);
+        this.setState({ selected: selectedArr })
     }
 
-    onClickLabel(e) {
-        let item = e.target;
+    // onClickLabel(e) {
+    //     let item = e.target;
 
-        let selectedItem = {
-            code: item.getAttribute('data-code'),
-            name: item.textContent
-        }
+    //     let selectedItem = {
+    //         code: item.getAttribute('data-code'),
+    //         name: item.textContent
+    //     }
 
-        // this.props.dispatch(removeLabel(selectedItem));
-    }
+    //     // this.props.dispatch(removeLabel(selectedItem));
+    // }
 
-    onChangeSearch(e) {
-        let input = e.target.value;
-        if (input === '') {
+    // onChangeSearch(e) {
+    //     let input = e.target.value;
+    //     if (input === '') {
 
-        }
-            // this.props.dispatch(resetFilter(e.target.value));
-        else {
+    //     }
+    //         // this.props.dispatch(resetFilter(e.target.value));
+    //     else {
 
-        }
-            // this.props.dispatch(filterList(e.target.value));
-    }
+    //     }
+    //         // this.props.dispatch(filterList(e.target.value));
+    // }
 
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
@@ -154,7 +162,7 @@ export class MultiSearchDropdown extends React.Component {
                 selected={ this.state.selected }
                 dropdownCss={ selectClassName } />
             <SelectorList
-                // onClick={ this.onClickList }
+                onClickItem={ this.onClickListItem }
                 data={ this.state.data }
                 filtered={ this.state.filtered }
                 selected={ this.state.selected }

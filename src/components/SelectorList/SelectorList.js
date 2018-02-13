@@ -15,7 +15,7 @@ import SelectorItem from '../SelectorItem';
 class SelectorList extends React.Component {
 
     static propTypes = {
-        // onClick: PropTypes.func.isRequired,
+        onClickItem: PropTypes.func.isRequired,
         data: PropTypes.arrayOf(PropTypes.object).isRequired,
         filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -66,10 +66,11 @@ class SelectorList extends React.Component {
                     { dataDisplay.map(item =>
                         <SelectorItem
                             key={ item.name }
-                            // onClick={ this.props.onClick }
+                            onClick={ this.props.onClickItem }
                             item={ item }
                             search={ this.props.search }
-                            selected={ _containsObject('boolean', item, this.props.selected) } />
+                            selected={ this.props.selected }
+                            selectedItem={ _containsObject('boolean', item, this.props.selected) } />
                     ) }
                 </ul>;
             }

@@ -22,13 +22,13 @@ class SelectorBox extends React.Component {
         // expanded: PropTypes.bool.isRequired,
     }
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            expanded: props.expanded
-        }
-    }
+    //     this.state = {
+    //         expanded: props.expanded
+    //     }
+    // }
 
     render() {
         return <span onClick={ this.props.onClick } className={ this.props.dropdownCss }>
