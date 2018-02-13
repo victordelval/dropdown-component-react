@@ -12,6 +12,7 @@ class SelectorItem extends React.Component {
     }
 
     _boldSearchString(str, find){
+        // TODO - case insensitive
         let parts = str.split(find);
         return <span>
             { parts[0] }<b>{ find }</b>{ parts[1] }
