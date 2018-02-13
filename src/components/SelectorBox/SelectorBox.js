@@ -17,8 +17,8 @@ class SelectorBox extends React.Component {
         onClick: PropTypes.func.isRequired,
         selected: PropTypes.arrayOf(PropTypes.object).isRequired,
         onClickLabel: PropTypes.func.isRequired,
+        onChangeSearch: PropTypes.func.isRequired,
         dropdownCss: PropTypes.string
-        // onChangeSearch: PropTypes.func.isRequired,
         // expanded: PropTypes.bool.isRequired,
     }
 
@@ -31,9 +31,14 @@ class SelectorBox extends React.Component {
     // }
 
     render() {
-        return <span onClick={ this.props.onClick } className={ this.props.dropdownCss }>
-            <SelectorSearch />
-            <SelectorLabelList onClickLabel={ this.props.onClickLabel } selected={ this.props.selected } />
+        return <span
+            onClick={ this.props.onClick }
+            className={ this.props.dropdownCss }>
+            <SelectorSearch
+                onChange={ this.props.onChangeSearch } />
+            <SelectorLabelList
+                onClickLabel={ this.props.onClickLabel }
+                selected={ this.props.selected } />
         </span>;
     }
 }
