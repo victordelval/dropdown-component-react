@@ -37,7 +37,7 @@ export class MultiSearchDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.onClickBox = this.onClickBox.bind(this);
+        this.onClickBox = this.onClickBox.bind(this);
         // this.onClickList = this.onClickList.bind(this);
         // this.onClickLabel = this.onClickLabel.bind(this);
         // this.onChangeSearch = this.onChangeSearch.bind(this);
@@ -101,6 +101,7 @@ export class MultiSearchDropdown extends React.Component {
             if (e.target.nodeName === 'INPUT') e.target.focus();
             else e.target.getElementsByTagName('input')[0].focus();
             // this.props.dispatch(expandDropdown());
+            this.setState({ expanded: true })
         }
     }
 
@@ -146,7 +147,7 @@ export class MultiSearchDropdown extends React.Component {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
-                // onClickBox={ this.onClickBox }
+                onClick={ this.onClickBox }
                 // onClickLabel={ this.onClickLabel }
                 // onChangeSearch={ this.onChangeSearch }
                 expanded={ this.state.expanded }

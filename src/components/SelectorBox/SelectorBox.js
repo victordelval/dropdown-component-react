@@ -14,36 +14,24 @@ import SelectorLabelList from '../SelectorLabelList';
 class SelectorBox extends React.Component {
 
     static propTypes = {
-        // onClickBox: PropTypes.func.isRequired,
+        onClick: PropTypes.func.isRequired,
+        selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+        dropdownCss: PropTypes.string
         // onClickLabel: PropTypes.func.isRequired,
         // onChangeSearch: PropTypes.func.isRequired,
-        selected: PropTypes.arrayOf(PropTypes.object).isRequired,
-        expanded: PropTypes.bool.isRequired,
-        dropdownCss: PropTypes.string
+        // expanded: PropTypes.bool.isRequired,
     }
 
     constructor(props) {
-            super(props);
+        super(props);
 
-            this.state = {
-                expanded: false
-            }
-        }
-
-    onClick = (e) => {
-        if (e.target.nodeName === 'LABEL') return;
-        console.log(this.props)
-        if (!this.props.expanded) {
-            if (e.target.nodeName === 'INPUT') e.target.focus();
-            else e.target.getElementsByTagName('input')[0].focus();
-            // this.props.dispatch(expandDropdown());
-            this.setState({ expanded: true });
-            // this.props.expanded = true;
+        this.state = {
+            expanded: props.expanded
         }
     }
 
     render() {
-        return <span onClick={ this.onClick } className={ this.props.dropdownCss }>
+        return <span onClick={ this.props.onClick } className={ this.props.dropdownCss }>
             <SelectorSearch />
             <SelectorLabelList selected={ this.props.selected } />
         </span>;
