@@ -6,25 +6,15 @@ import './SelectorSearch.css';
 
 class SelectorSearch extends React.Component {
 
-    // static propTypes = {
-    //     onChange: PropTypes.func.isRequired
-    // }
-
-    onChangeSearch(e) {
-        let input = e.target.value;
-        if (input === '') {
-
-        }
-        else {
-
-        }
+    static propTypes = {
+        onChange: PropTypes.func.isRequired
     }
 
     render() {
         return <span>
             <input
                 type="text"
-                onChange={ this.onChange }
+                onChange={ this.props.onChange }
                 className="selector-search"
                 placeholder="Type to filter..." />
         </span>;

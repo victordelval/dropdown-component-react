@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-
-import { expandDropdown, collapseDropdown } from '../../actions/actions';
-import { startRequest, successRequest } from '../../actions/actions';
-import { addLabel, removeLabel } from '../../actions/actions';
-import { filterList, resetFilter } from '../../actions/actions';
+import { _containsObject, _filterByName } from '../../utils'
 
 import './MultiSearchDropdown.css';
 
-// import Dropdown from '../../components/Dropdown/';
 import SelectorBox from '../../components/SelectorBox';
 import SelectorList from '../../components/SelectorList';
 
@@ -18,18 +12,9 @@ import SelectorList from '../../components/SelectorList';
 /**
  * Multiple search selection dropdown container component
  */
-export class MultiSearchDropdown extends React.Component {
+class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
-        // loading: PropTypes.bool.isRequired,
-        // expanded: PropTypes.bool.isRequired,
-        // data: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // selected: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
-        // search: PropTypes.string,
-        // // queried: PropTypes.bool,
-        // dropdownCss: PropTypes.string,
-
         url: PropTypes.string.isRequired,
         responseKey: PropTypes.string
     }
@@ -37,10 +22,10 @@ export class MultiSearchDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.onClickBox = this.onClickBox.bind(this);
-        // this.onClickList = this.onClickList.bind(this);
-        // this.onClickLabel = this.onClickLabel.bind(this);
-        // this.onChangeSearch = this.onChangeSearch.bind(this);
+        this.onClickBox = this.onClickBox.bind(this);
+        this.onClickListItem = this.onClickListItem.bind(this);
+        this.onClickLabel = this.onClickLabel.bind(this);
+        this.onChangeSearch = this.onChangeSearch.bind(this);
 
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -54,20 +39,25 @@ export class MultiSearchDropdown extends React.Component {
             search: '',
             // queried: false,
             dropdownCss: ''
-        }
+        };
     }
 
     componentDidMount() {
 
         document.addEventListener('mousedown', this.handleClickOutside);
 
-        // this.props.dispatch(startRequest());
+        // start request
+        this.setState({ loading: true });
 
         fetch(this.props.url)
             .then(res => {
                 return res.json();
             }).then(json => {
-                // this.props.dispatch(successRequest(json[this.props.responseKey]));
+                // request success
+                this.setState({
+                    loading: false,
+                    data: json[this.props.responseKey]
+                });
             }).catch(err => {
                 // TODO - Handle error
                 console.log(err);
@@ -89,71 +79,81 @@ export class MultiSearchDropdown extends React.Component {
      * Alert if clicked on outside of element
      */
     handleClickOutside(event) {
+        // collapse dropdown
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            // this.props.dispatch(collapseDropdown());
+            this.setState({ expanded: false });
         }
     }
 
     onClickBox(e) {
+        // expand dropdown
         if (e.target.nodeName === 'LABEL') return;
-
         if (!this.state.expanded) {
             if (e.target.nodeName === 'INPUT') e.target.focus();
             else e.target.getElementsByTagName('input')[0].focus();
-            // this.props.dispatch(expandDropdown());
+            this.setState({ expanded: true });
         }
     }
 
-    onClickList(e) {
+    onClickListItem(e) {
+        // add label
         let item = e.target;
-
         if (item.className === 'selected-item')
             return;
-
         item.className = 'selected-item';
-
         let selectedItem = {
             code: item.getAttribute('data-code'),
             name: item.textContent
-        }
-        // this.props.dispatch(addLabel(selectedItem));
+        };
+        let selectedArr = this.state.selected.slice(0);
+        selectedArr.push(selectedItem);
+        this.setState({ selected: selectedArr });
     }
 
     onClickLabel(e) {
+        // remove label
         let item = e.target;
-
         let selectedItem = {
             code: item.getAttribute('data-code'),
             name: item.textContent
         }
-
-        // this.props.dispatch(removeLabel(selectedItem));
+        let selectedArr = this.state.selected.slice(0);
+        let index = _containsObject('index', selectedItem, selectedArr);
+        if (typeof index === 'number') selectedArr.splice(index, 1);
+        this.setState({ selected: selectedArr });
     }
 
     onChangeSearch(e) {
+        // filter dropdown list
+        // or reset filtered dropdown
         let input = e.target.value;
         if (input === '') {
-
+            this.setState({
+                filtered: [],
+                search: ''
+            });
+        } else {
+            let dataArr = this.state.data.slice(0);
+            let filteredData = _filterByName(input, dataArr)
+            this.setState({
+                filtered: filteredData,
+                search: input
+            });
         }
-            // this.props.dispatch(resetFilter(e.target.value));
-        else {
-
-        }
-            // this.props.dispatch(filterList(e.target.value));
     }
 
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
             <SelectorBox
-                // onClickBox={ this.onClickBox }
-                // onClickLabel={ this.onClickLabel }
-                // onChangeSearch={ this.onChangeSearch }
+                onClick={ this.onClickBox }
+                onClickLabel={ this.onClickLabel }
+                onChangeSearch={ this.onChangeSearch }
                 expanded={ this.state.expanded }
                 selected={ this.state.selected }
                 dropdownCss={ selectClassName } />
             <SelectorList
-                // onClick={ this.onClickList }
+                onClickItem={ this.onClickListItem }
                 data={ this.state.data }
                 filtered={ this.state.filtered }
                 selected={ this.state.selected }
