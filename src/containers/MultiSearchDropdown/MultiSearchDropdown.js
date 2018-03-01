@@ -37,11 +37,12 @@ class MultiSearchDropdown extends React.Component {
     }
 
     async componentDidMount() {
-        // click outside listener
+        // adds listener for click outside event
         document.addEventListener('mousedown', this.handleClickOutside);
     }
 
     componentWillUnmount() {
+        // removes listener for click outside event
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
@@ -117,24 +118,26 @@ class MultiSearchDropdown extends React.Component {
 
     render() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
-        return <div ref={this.setWrapperRef}>
-            <DropdownBox
-                onClick={ this.onClickBox }
-                onClickLabel={ this.onClickLabel }
-                onChangeSearch={ this.onChangeSearch }
-                expanded={ this.state.expanded }
-                selected={ this.state.selected }
-                dropdownCss={ selectClassName } />
-            <DropdownList
-                data={ this.props.data }
-                loading={ this.props.loading }
-                onClickItem={ this.onClickListItem }
-                filtered={ this.state.filtered }
-                selected={ this.state.selected }
-                search={ this.state.search }
-                expanded={ this.state.expanded }
-                dropdownCss={ selectClassName } />
-        </div>;
+        return (
+            <div ref={this.setWrapperRef}>
+                <DropdownBox
+                    onClick={ this.onClickBox }
+                    onClickLabel={ this.onClickLabel }
+                    onChangeSearch={ this.onChangeSearch }
+                    selected={ this.state.selected }
+                    dropdownCss={ selectClassName } />
+
+                <DropdownList
+                    data={ this.props.data }
+                    loading={ this.props.loading }
+                    onClickItem={ this.onClickListItem }
+                    filtered={ this.state.filtered }
+                    selected={ this.state.selected }
+                    search={ this.state.search }
+                    expanded={ this.state.expanded }
+                    dropdownCss={ selectClassName } />
+            </div>
+        );
     }
 }
 

@@ -42,17 +42,19 @@ class DropdownList extends React.Component {
                 if (dataDisplay.length === 0)
                     return <span className={ listClassName }>No match found</span>;
 
-                return <ul className={ listClassName }>
-                    { dataDisplay.map(item =>
-                        <ListItem
-                            key={ item.name }
-                            onClick={ this.props.onClickItem }
-                            item={ item }
-                            search={ this.props.search }
-                            selected={ this.props.selected }
-                            selectedItem={ _containsObject('boolean', item, this.props.selected) } />
-                    ) }
-                </ul>;
+                return (
+                    <ul className={ listClassName }>
+                        { dataDisplay.map(item =>
+                            <ListItem
+                                key={ item.name }
+                                onClick={ this.props.onClickItem }
+                                item={ item }
+                                search={ this.props.search }
+                                selected={ this.props.selected }
+                                selectedItem={ _containsObject('boolean', item, this.props.selected) } />
+                        ) }
+                    </ul>
+                );
             }
         }
     }

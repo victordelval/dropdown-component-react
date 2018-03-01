@@ -17,9 +17,8 @@ class DropdownBox extends React.Component {
 
     render() {
         return (
-            <span
-                onClick={ this.props.onClick }
-                className={ this.props.dropdownCss }>
+            <span onClick={ this.props.onClick }
+                  className={ this.props.dropdownCss }>
                 <SearchBox
                     onChange={ this.props.onChangeSearch } />
                 <LabelList

@@ -28,3 +28,18 @@ class LabelList extends React.Component {
 }
 
 export default LabelList;
+
+
+// let collection = [];
+// this.props.selected.forEach((item) => {
+//     collection.push(
+//         <LabelButton
+//             item={item}
+//             key={item.code} />
+//     );
+// });
+// return (
+//     <span>
+//         {collection}
+//     </span>
+// );

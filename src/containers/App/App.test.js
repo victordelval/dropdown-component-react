@@ -7,6 +7,7 @@ import App from './App';
 describe('<App />', () => {
 
     describe('componentDidMount', () => {
+
         it('sets the state componentDidMount', async () => {
             window.fetch = jest.fn().mockImplementation(() => ({
                 status: 200,

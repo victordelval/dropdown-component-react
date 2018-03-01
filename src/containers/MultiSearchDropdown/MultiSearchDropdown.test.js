@@ -11,7 +11,6 @@ import DropdownList from '../../components/DropdownList';
 describe('<MultiSearchDropdown />', () => {
 
     it('Should render without crashing', () => {
-
         // mock global fetch
         const mockResponse = (status, statusText, response) => {
             return new window.Response(response, {
@@ -39,7 +38,6 @@ describe('<MultiSearchDropdown />', () => {
         expect(wrapper.find('DropdownBox').length).toBe(1);
         expect(wrapper.find('DropdownList').length).toBe(1);
     });
-
 });
 
 

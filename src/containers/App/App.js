@@ -17,7 +17,6 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        // state (properties that change over time)
         this.state = {
             loading: false,
             data: [],
@@ -25,25 +24,7 @@ class App extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     // start request
-    //     this.setState({ loading: true });
-    //     fetch(this.props.url)
-    //         .then(res => {
-    //             return res.json();
-    //         }).then(json => {
-    //             this.setState({
-    //                 loading: false,
-    //                 data: json[this.props.responseKey]
-    //             });
-    //         }).catch(err => {
-    //             // Handle error
-    //             console.log(err);
-    //         });
-    // }
-
     async componentDidMount() {
-        // request
         this.setState({ loading: true });
         try {
             const response = await fetch(this.props.url)
@@ -61,7 +42,6 @@ class App extends React.Component {
             });
         }
     }
-
 
     render() {
         return (
