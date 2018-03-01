@@ -33,14 +33,8 @@ describe('<MultiSearchDropdown />', () => {
 
 
         const wrapper = shallow(<MultiSearchDropdown
-            // dispatch={ () => {} }
-            // loading={ true }
-            // expanded={ false }
-            // data={ [] }
-            // selected={ [] }
-            // filtered={ [] }
-            url='http://localhost:9000'
-            responseKey='countries' />);
+            loading={ true }
+            data={ [] } />);
 
         expect(wrapper.find('DropdownBox').length).toBe(1);
         expect(wrapper.find('DropdownList').length).toBe(1);
@@ -61,6 +55,8 @@ describe('<MultiSearchDropdown /> suite 2', () => {
 
         const wrapper = shallow(<MultiSearchDropdown
             // data={mockedData.countries} />);
+            loading={ true }
+            data={ [] }
             url='http://localhost:9000'
             responseKey='countries' />);
 

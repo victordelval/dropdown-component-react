@@ -12,8 +12,8 @@ import DropdownList from '../../components/DropdownList';
 class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
-        url: PropTypes.string.isRequired,
-        responseKey: PropTypes.string
+        data: PropTypes.arrayOf(PropTypes.object).isRequired,
+        loading: PropTypes.bool.isRequired,
     }
 
     constructor(props) {
@@ -28,10 +28,7 @@ class MultiSearchDropdown extends React.Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
 
         this.state = {
-            loading: false,
             expanded: false,
-            data: [],
-            errorStatus: '',
             selected: [],
             filtered: [],
             search: '',
@@ -39,45 +36,9 @@ class MultiSearchDropdown extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     document.addEventListener('mousedown', this.handleClickOutside);
-    //     // start request
-    //     this.setState({ loading: true });
-    //     fetch(this.props.url)
-    //         .then(res => {
-    //             return res.json();
-    //         }).then(json => {
-    //             this.setState({
-    //                 loading: false,
-    //                 data: json[this.props.responseKey]
-    //             });
-    //         }).catch(err => {
-    //             // Handle error
-    //             console.log(err);
-    //         });
-    // }
-
     async componentDidMount() {
         // click outside listener
         document.addEventListener('mousedown', this.handleClickOutside);
-
-        // request
-        this.setState({ loading: true });
-
-        try {
-            const response = await fetch(this.props.url)
-
-            response.json().then(json => {
-                this.setState({
-                    loading: false,
-                    data: json[this.props.responseKey]
-                })
-            });
-
-        } catch(err) {
-            console.log(err);
-            this.setState({ errorStatus: 'Error fetching the data from server' });
-        }
     }
 
     componentWillUnmount() {
@@ -144,7 +105,7 @@ class MultiSearchDropdown extends React.Component {
                 search: ''
             });
         } else {
-            let dataArr = this.state.data.slice(0);
+            let dataArr = this.props.data.slice(0);
             let filteredData = _filterByName(input, dataArr)
             this.setState({
                 filtered: filteredData,
@@ -165,12 +126,12 @@ class MultiSearchDropdown extends React.Component {
                 selected={ this.state.selected }
                 dropdownCss={ selectClassName } />
             <DropdownList
+                data={ this.props.data }
+                loading={ this.props.loading }
                 onClickItem={ this.onClickListItem }
-                data={ this.state.data }
                 filtered={ this.state.filtered }
                 selected={ this.state.selected }
                 search={ this.state.search }
-                loading={ this.state.loading }
                 expanded={ this.state.expanded }
                 dropdownCss={ selectClassName } />
         </div>;
