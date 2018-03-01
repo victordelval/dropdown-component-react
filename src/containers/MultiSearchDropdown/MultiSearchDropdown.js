@@ -89,6 +89,7 @@ class MultiSearchDropdown extends React.Component {
         item.className = 'selected-item';
         let selectedItem = {
             code: item.getAttribute('data-code'),
+            // name: item.getAttribute('data-name')
             name: item.textContent
         };
         let selectedArr = this.state.selected.slice(0);

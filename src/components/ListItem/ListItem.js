@@ -12,23 +12,27 @@ class ListItem extends React.Component {
         search: PropTypes.string,
     }
 
-    _boldSearchString(str, find){
-        // TODO - case insensitive
-        let parts = str.split(find);
-        return <span>
-            { parts[0] }<b>{ find }</b>{ parts[1] }
-        </span>;
-    }
+    // DISABLED
+    // _boldSearchString(str, find){
+    //     // TODO - case insensitive
+    //     let parts = str.split(find);
+    //     return <span>
+    //         { parts[0] }<b>{ find }</b>{ parts[1] }
+    //     </span>;
+    // }
 
     render() {
         let name = this.props.item.name;
-        let search = this.props.search;
+        let code = this.props.item.code;
+        // let search = this.props.search;
         return (
-            <li key={ this.props.item.code }
+            <li key={ code }
                 onClick={ this.props.onClick }
                 className={ this.props.selectedItem ? 'selected-item' : 'item' }
-                data-code={ this.props.item.code } >
-                    { search !== '' ? this._boldSearchString(name, search) : name }
+                // data-name={ name }
+                data-code={ code } >
+                    {/* { search !== '' ? this._boldSearchString(name, search) : name } */}
+                    { name }
             </li>
         );
     }
