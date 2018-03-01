@@ -31,6 +31,7 @@ class MultiSearchDropdown extends React.Component {
             loading: false,
             expanded: false,
             data: [],
+            errorStatus: '',
             selected: [],
             filtered: [],
             search: '',
@@ -38,22 +39,45 @@ class MultiSearchDropdown extends React.Component {
         };
     }
 
-    componentDidMount() {
+    // componentDidMount() {
+    //     document.addEventListener('mousedown', this.handleClickOutside);
+    //     // start request
+    //     this.setState({ loading: true });
+    //     fetch(this.props.url)
+    //         .then(res => {
+    //             return res.json();
+    //         }).then(json => {
+    //             this.setState({
+    //                 loading: false,
+    //                 data: json[this.props.responseKey]
+    //             });
+    //         }).catch(err => {
+    //             // Handle error
+    //             console.log(err);
+    //         });
+    // }
+
+    async componentDidMount() {
+        // click outside listener
         document.addEventListener('mousedown', this.handleClickOutside);
-        // start request
+
+        // request
         this.setState({ loading: true });
-        fetch(this.props.url)
-            .then(res => {
-                return res.json();
-            }).then(json => {
+
+        try {
+            const response = await fetch(this.props.url)
+
+            response.json().then(json => {
                 this.setState({
                     loading: false,
                     data: json[this.props.responseKey]
-                });
-            }).catch(err => {
-                // Handle error
-                console.log(err);
+                })
             });
+
+        } catch(err) {
+            console.log(err);
+            this.setState({ errorStatus: 'Error fetching the data from server' });
+        }
     }
 
     componentWillUnmount() {
@@ -129,9 +153,10 @@ class MultiSearchDropdown extends React.Component {
         }
     }
 
-    renderSelector() {
+
+    render() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
-        return <div>
+        return <div ref={this.setWrapperRef}>
             <DropdownBox
                 onClick={ this.onClickBox }
                 onClickLabel={ this.onClickLabel }
@@ -150,13 +175,6 @@ class MultiSearchDropdown extends React.Component {
                 dropdownCss={ selectClassName } />
         </div>;
     }
-
-    render() {
-        return <div ref={this.setWrapperRef}>
-            { this.renderSelector() }
-        </div>;
-    }
-
 }
 
 export default MultiSearchDropdown;
