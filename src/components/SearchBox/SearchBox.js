@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import './SelectorSearch.css';
+import './SearchBox.css';
 
 
-class SelectorSearch extends React.Component {
+class SearchBox extends React.Component {
 
     static propTypes = {
         onChange: PropTypes.func.isRequired
@@ -23,4 +23,4 @@ class SelectorSearch extends React.Component {
     }
 }
 
-export default SelectorSearch;
+export default SearchBox;

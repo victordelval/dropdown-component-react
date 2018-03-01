@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SelectorList from './SelectorList';
-import SelectorItem from '../SelectorItem';
+import DropdownList from './DropdownList';
+import ListItem from '../ListItem';
 
 
-describe('<SelectorList />', () => {
+describe('<DropdownList />', () => {
 
     it('Should render without crashing', () => {
-        const wrapper = shallow(<SelectorList
+        const wrapper = shallow(<DropdownList
             onClick={ () => {} }
             data={ [] }
             filtered={ [] }
@@ -18,7 +18,7 @@ describe('<SelectorList />', () => {
     });
 
     it('Should render "p" element with "Loading..." message while requesting data', () => {
-        const wrapper = shallow(<SelectorList
+        const wrapper = shallow(<DropdownList
             onClick={ () => {} }
             data={ [] }
             filtered={ [] }
@@ -34,7 +34,7 @@ describe('<SelectorList />', () => {
     });
 
     it('Should render "span" element with "No data available" message when no data', () => {
-        const wrapper = shallow(<SelectorList
+        const wrapper = shallow(<DropdownList
             onClick={ () => {} }
             data={ [] }
             filtered={ [] }
@@ -55,7 +55,7 @@ describe('<SelectorList />', () => {
             { code: "PT", name: "Portugal" }
         ];
 
-        const wrapper = shallow(<SelectorList
+        const wrapper = shallow(<DropdownList
             onClick={ () => {} }
             data={ data }
             filtered={ [] }
@@ -71,13 +71,13 @@ describe('<SelectorList />', () => {
         expect(wrapper.find('span').contains('No match found')).toEqual(true);
     });
 
-    it('Should render "ul" element with "SelectorItem" component representing each item in data', () => {
+    it('Should render "ul" element with "ListItem" component representing each item in data', () => {
         let data = [
             { code: "ES", name: "Spain" },
             { code: "PT", name: "Portugal" }
         ];
 
-        const wrapper = shallow(<SelectorList
+        const wrapper = shallow(<DropdownList
             onClick={ () => {} }
             data={ data }
             filtered={ [] }
@@ -90,7 +90,7 @@ describe('<SelectorList />', () => {
         expect(wrapper.find('p').length).toBe(0);
 
         expect(wrapper.find('ul').length).toBe(1);
-        expect(wrapper.find('SelectorItem').length).toBe(2);
+        expect(wrapper.find('ListItem').length).toBe(2);
     });
 
 });

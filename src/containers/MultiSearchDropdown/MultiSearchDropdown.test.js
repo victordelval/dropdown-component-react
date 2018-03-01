@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import { connect } from 'react-redux';
 
 import { MultiSearchDropdown } from './MultiSearchDropdown';
-import SelectorBox from '../../components/SelectorBox';
-import SelectorList from '../../components/SelectorList';
+import DropdownBox from '../../components/DropdownBox';
+import DropdownList from '../../components/DropdownList';
 
 
 describe('<MultiSearchDropdown />', () => {
@@ -41,8 +41,8 @@ describe('<MultiSearchDropdown />', () => {
             filtered={ [] }
             url='http://localhost:9000' />);
 
-        expect(wrapper.find('SelectorBox').length).toBe(1);
-        expect(wrapper.find('SelectorList').length).toBe(1);
+        expect(wrapper.find('DropdownBox').length).toBe(1);
+        expect(wrapper.find('DropdownList').length).toBe(1);
     });
 
 });

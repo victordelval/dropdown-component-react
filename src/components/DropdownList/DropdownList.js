@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { _containsObject } from '../../utils'
 
-import './SelectorList.css';
-import SelectorItem from '../SelectorItem';
+import './DropdownList.css';
+import ListItem from '../ListItem';
 
 
-class SelectorList extends React.Component {
+class DropdownList extends React.Component {
 
     static propTypes = {
         onClickItem: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ class SelectorList extends React.Component {
 
                 return <ul className={ listClassName }>
                     { dataDisplay.map(item =>
-                        <SelectorItem
+                        <ListItem
                             key={ item.name }
                             onClick={ this.props.onClickItem }
                             item={ item }
@@ -65,4 +65,4 @@ class SelectorList extends React.Component {
 
 }
 
-export default SelectorList;
+export default DropdownList;

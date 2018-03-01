@@ -5,8 +5,8 @@ import { _containsObject, _filterByName } from '../../utils'
 
 import './MultiSearchDropdown.css';
 
-import SelectorBox from '../../components/SelectorBox';
-import SelectorList from '../../components/SelectorList';
+import DropdownBox from '../../components/DropdownBox';
+import DropdownList from '../../components/DropdownList';
 
 
 class MultiSearchDropdown extends React.Component {
@@ -131,14 +131,14 @@ class MultiSearchDropdown extends React.Component {
     renderSelector() {
         const selectClassName = 'countries-dropdown multi-search-dropdown';
         return <div>
-            <SelectorBox
+            <DropdownBox
                 onClick={ this.onClickBox }
                 onClickLabel={ this.onClickLabel }
                 onChangeSearch={ this.onChangeSearch }
                 expanded={ this.state.expanded }
                 selected={ this.state.selected }
                 dropdownCss={ selectClassName } />
-            <SelectorList
+            <DropdownList
                 onClickItem={ this.onClickListItem }
                 data={ this.state.data }
                 filtered={ this.state.filtered }

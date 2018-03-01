@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-class SelectorItem extends React.Component {
+class ListItem extends React.Component {
 
     static propTypes = {
         item: PropTypes.object.isRequired,
@@ -35,4 +35,4 @@ class SelectorItem extends React.Component {
 
 }
 
-export default SelectorItem;
+export default ListItem;

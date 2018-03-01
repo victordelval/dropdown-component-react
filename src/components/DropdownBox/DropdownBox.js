@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SelectorSearch from '../SelectorSearch';
-import SelectorLabelList from '../SelectorLabelList';
+import SearchBox from '../SearchBox';
+import LabelList from '../LabelList';
 
 
-class SelectorBox extends React.Component {
+class DropdownBox extends React.Component {
 
     static propTypes = {
         onClick: PropTypes.func.isRequired,
@@ -20,9 +20,9 @@ class SelectorBox extends React.Component {
             <span
                 onClick={ this.props.onClick }
                 className={ this.props.dropdownCss }>
-                <SelectorSearch
+                <SearchBox
                     onChange={ this.props.onChangeSearch } />
-                <SelectorLabelList
+                <LabelList
                     onClickLabel={ this.props.onClickLabel }
                     selected={ this.props.selected } />
             </span>
@@ -30,4 +30,4 @@ class SelectorBox extends React.Component {
     }
 }
 
-export default SelectorBox;
+export default DropdownBox;

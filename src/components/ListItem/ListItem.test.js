@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SelectorItem from './SelectorItem';
+import ListItem from './ListItem';
 
 
-describe('SelectorItem', () => {
+describe('ListItem', () => {
 
     it('Should render a selector list item', () => {
         let item = {code: 'SP', name: 'Spain'};
-        const wrapper = shallow(<SelectorItem
+        const wrapper = shallow(<ListItem
             onClick={ () => {} }
             item={ item }
             selected={ [] } />);
@@ -19,7 +19,7 @@ describe('SelectorItem', () => {
     it('Should render in bold the string matching the search', () => {
         let item = {code: 'SP', name: 'Spain'};
         let search = 'sp';
-        const wrapper = shallow(<SelectorItem
+        const wrapper = shallow(<ListItem
             onClick={ () => {} }
             item={ item }
             selected={ false }
@@ -31,7 +31,7 @@ describe('SelectorItem', () => {
 
     // it('Should render selected item after click event', () => {
     //     let item = {code: 'SP', name: 'Spain'};
-    //     const wrapper = shallow(<SelectorItem
+    //     const wrapper = shallow(<ListItem
     //         onClick={ () => {} }
     //         item={ item }
     //         selected={ false }

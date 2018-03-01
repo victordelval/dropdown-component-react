@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LabelButton from '../LabelButton';
 
 
-class SelectorLabelList extends React.Component {
+class LabelList extends React.Component {
 
     static propTypes = {
         onClickLabel: PropTypes.func.isRequired,
@@ -27,4 +27,4 @@ class SelectorLabelList extends React.Component {
 
 }
 
-export default SelectorLabelList;
+export default LabelList;

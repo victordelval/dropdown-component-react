@@ -1,17 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SelectorLabelList from './SelectorLabelList';
+import LabelList from './LabelList';
 
 
-describe('SelectorLabelList', () => {
+describe('LabelList', () => {
 
     it('Should render without crashing', () => {
         let selectedArr = [
             {code: 'SP', name: 'Spain'},
             {code: 'PT', name: 'Portugal'}
         ]
-        shallow(<SelectorLabelList
+        shallow(<LabelList
             onClickLabel={ () => {} }
             selected={ selectedArr } />);
     });

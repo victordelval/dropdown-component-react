@@ -77,30 +77,30 @@ src/
       LabelButton.js
       LabelButton.test.js
 
-    SelectorBox/
+    DropdownBox/
       index.js
-      SelectorBox.js
+      DropdownBox.js
 
-    SelectorItem/
+    ListItem/
       index.js
-      SelectorItem.js
-      SelectorItem.test.js
+      ListItem.js
+      ListItem.test.js
 
-    SelectorLabelList/
+    LabelList/
       index.js
-      SelectorLabelList.js
-      SelectorLabelList.test.js
+      LabelList.js
+      LabelList.test.js
 
-    SelectorList/
+    DropdownList/
       index.js
-      SelectorList.css
-      SelectorList.js
-      SelectorList.test.js
+      DropdownList.css
+      DropdownList.js
+      DropdownList.test.js
 
-    SelectorSearch/
+    SearchBox/
       index.js
-      SelectorSearch.css
-      SelectorSearch.js
+      SearchBox.css
+      SearchBox.js
 
   containers/
     MultiSearchDropdown/
