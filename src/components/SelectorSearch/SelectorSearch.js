@@ -11,13 +11,15 @@ class SelectorSearch extends React.Component {
     }
 
     render() {
-        return <span>
-            <input
-                type="text"
-                onChange={ this.props.onChange }
-                className="selector-search"
-                placeholder="Type to filter..." />
-        </span>;
+        return (
+            <span>
+                <input
+                    type="text"
+                    onChange={ this.props.onChange }
+                    className="selector-search"
+                    placeholder="Type to filter..." />
+            </span>
+        );
     }
 }
 

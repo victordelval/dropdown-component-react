@@ -7,11 +7,6 @@ import './SelectorList.css';
 import SelectorItem from '../SelectorItem';
 
 
-/**
- * First level subcomponent of a MultiSearchDropdown.
- *
- * This subcomponent is a list of available options to select.
- */
 class SelectorList extends React.Component {
 
     static propTypes = {

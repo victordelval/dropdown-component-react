@@ -23,12 +23,14 @@ class SelectorItem extends React.Component {
     render() {
         let name = this.props.item.name;
         let search = this.props.search;
-        return <li key={ this.props.item.code }
-                   onClick={ this.props.onClick }
-                   className={ this.props.selectedItem ? 'selected-item' : 'item' }
-                   data-code={ this.props.item.code } >
-            { search !== '' ? this._boldSearchString(name, search) : name }
-        </li>;
+        return (
+            <li key={ this.props.item.code }
+                onClick={ this.props.onClick }
+                className={ this.props.selectedItem ? 'selected-item' : 'item' }
+                data-code={ this.props.item.code } >
+                    { search !== '' ? this._boldSearchString(name, search) : name }
+            </li>
+        );
     }
 
 }

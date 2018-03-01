@@ -11,10 +11,13 @@ class LabelButton extends React.Component {
     }
 
     render() {
-
-        return <label className="button"
-            onClick={ this.props.onClick }
-            data-code={ this.props.code }>{ this.props.name }</label>;
+        return (
+            <label className="button"
+                onClick={ this.props.onClick }
+                data-code={ this.props.code }>
+                    { this.props.name }
+            </label>
+        );
     }
 
 }

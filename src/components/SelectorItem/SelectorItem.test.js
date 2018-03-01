@@ -11,7 +11,7 @@ describe('SelectorItem', () => {
         const wrapper = shallow(<SelectorItem
             onClick={ () => {} }
             item={ item }
-            selected={ false } />);
+            selected={ [] } />);
 
         expect(wrapper.find('li').length).toBe(1);
     });

@@ -2,12 +2,8 @@ import React from 'react';
 
 import './CountriesContainer.css'
 import Dropdown from '../../components/Dropdown';
-import MultiSearchDropdown from '../MultiSearchDropdown';
 
 
-/**
- * Container component to manage a couple of dropdown selectors.
- */
 class CountriesContainer extends React.Component {
 
     constructor(props) {
@@ -22,7 +18,7 @@ class CountriesContainer extends React.Component {
     componentDidMount() {
         this.setState({ loading: true });
 
-        fetch(process.env.REACT_APP_COUNTRIES_URL).then(res => {
+        fetch(process.env.REACT_APP_REQUEST_URL).then(res => {
             return res.json();
         }).then(json => {
             this.setState({
@@ -44,18 +40,12 @@ class CountriesContainer extends React.Component {
         return <main className="countries-container">
             <h1 className="countries-container-text">Dropdown component</h1>
             <hr/>
-            <p className="countries-container-text countries-container-p">This is a Multiple Search Selection Dropdown component (extends):</p>
-            <MultiSearchDropdown
-                data={ this.props.countries }
-                loading={ this.props.loading }
-                dropdownCss={ dropdownClassName } />
-
-            {/* <p className="countries-container-text">Basic Dropdown component:</p>
+            <p className="countries-container-text">Basic Dropdown component:</p>
             <Dropdown
                 data={ this.state.countries }
                 loading={ this.state.loading }
                 dropdownCss={ dropdownClassName } />
-            <br/> */}
+            <br/>
         </main>;
     }
 }

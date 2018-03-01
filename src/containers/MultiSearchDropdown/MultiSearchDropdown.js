@@ -9,9 +9,6 @@ import SelectorBox from '../../components/SelectorBox';
 import SelectorList from '../../components/SelectorList';
 
 
-/**
- * Multiple search selection dropdown container component
- */
 class MultiSearchDropdown extends React.Component {
 
     static propTypes = {
@@ -37,29 +34,24 @@ class MultiSearchDropdown extends React.Component {
             selected: [],
             filtered: [],
             search: '',
-            // queried: false,
             dropdownCss: ''
         };
     }
 
     componentDidMount() {
-
         document.addEventListener('mousedown', this.handleClickOutside);
-
         // start request
         this.setState({ loading: true });
-
         fetch(this.props.url)
             .then(res => {
                 return res.json();
             }).then(json => {
-                // request success
                 this.setState({
                     loading: false,
                     data: json[this.props.responseKey]
                 });
             }).catch(err => {
-                // TODO - Handle error
+                // Handle error
                 console.log(err);
             });
     }
@@ -68,16 +60,10 @@ class MultiSearchDropdown extends React.Component {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
-    /**
-     * Set the wrapper ref
-     */
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
 
-    /**
-     * Alert if clicked on outside of element
-     */
     handleClickOutside(event) {
         // collapse dropdown
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {

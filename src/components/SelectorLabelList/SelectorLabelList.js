@@ -12,15 +12,17 @@ class SelectorLabelList extends React.Component {
     }
 
     render() {
-        return <span>
-            { this.props.selected.map(item =>
-                <LabelButton
-                    key={`${item.code}-${item.name}`}
-                    onClick={ this.props.onClickLabel }
-                    code={item.code}
-                    name={item.name} />
-            )}
-        </span>;
+        return (
+            <span>
+                { this.props.selected.map(item =>
+                    <LabelButton
+                        key={`${item.code}-${item.name}`}
+                        onClick={ this.props.onClickLabel }
+                        code={item.code}
+                        name={item.name} />
+                )}
+            </span>
+        );
     }
 
 }

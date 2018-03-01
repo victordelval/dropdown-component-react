@@ -5,12 +5,6 @@ import SelectorSearch from '../SelectorSearch';
 import SelectorLabelList from '../SelectorLabelList';
 
 
-/**
- * First level subcomponent of a MultiSearchDropdown.
- *
- * This subcomponent is a composition of a search input (to filter the list
- * subcomponent) and a label list (to show selected items of the list subcomponent)
- */
 class SelectorBox extends React.Component {
 
     static propTypes = {
@@ -22,15 +16,17 @@ class SelectorBox extends React.Component {
     }
 
     render() {
-        return <span
-            onClick={ this.props.onClick }
-            className={ this.props.dropdownCss }>
-            <SelectorSearch
-                onChange={ this.props.onChangeSearch } />
-            <SelectorLabelList
-                onClickLabel={ this.props.onClickLabel }
-                selected={ this.props.selected } />
-        </span>;
+        return (
+            <span
+                onClick={ this.props.onClick }
+                className={ this.props.dropdownCss }>
+                <SelectorSearch
+                    onChange={ this.props.onChangeSearch } />
+                <SelectorLabelList
+                    onClickLabel={ this.props.onClickLabel }
+                    selected={ this.props.selected } />
+            </span>
+        );
     }
 }
 
