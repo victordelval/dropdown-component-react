@@ -9,7 +9,7 @@ describe('<DropdownList />', () => {
 
     it('Should render without crashing', () => {
         const wrapper = shallow(<DropdownList
-            onClick={ () => {} }
+            onClickItem={ () => {} }
             data={ [] }
             filtered={ [] }
             selected={ [] }
@@ -19,7 +19,7 @@ describe('<DropdownList />', () => {
 
     it('Should render "p" element with "Loading..." message while requesting data', () => {
         const wrapper = shallow(<DropdownList
-            onClick={ () => {} }
+            onClickItem={ () => {} }
             data={ [] }
             filtered={ [] }
             selected={ [] }
@@ -35,7 +35,7 @@ describe('<DropdownList />', () => {
 
     it('Should render "span" element with "No data available" message when no data', () => {
         const wrapper = shallow(<DropdownList
-            onClick={ () => {} }
+            onClickItem={ () => {} }
             data={ [] }
             filtered={ [] }
             selected={ [] }
@@ -56,7 +56,7 @@ describe('<DropdownList />', () => {
         ];
 
         const wrapper = shallow(<DropdownList
-            onClick={ () => {} }
+            onClickItem={ () => {} }
             data={ data }
             filtered={ [] }
             selected={ [] }
@@ -78,7 +78,7 @@ describe('<DropdownList />', () => {
         ];
 
         const wrapper = shallow(<DropdownList
-            onClick={ () => {} }
+            onClickItem={ () => {} }
             data={ data }
             filtered={ [] }
             selected={ [] }
